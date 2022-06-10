@@ -79,6 +79,9 @@ def interpret(packet: bytes) -> bytes:
 
 
 def send_packet(packet: bytes, address: str, port: int):
+	if len(packet) == 0:
+		s.sendto(packet, (address, port))
+
 	for i in range(0, len(packet), 4096):
 		s.sendto(packet[i:i + 4096], (address, port))
 
